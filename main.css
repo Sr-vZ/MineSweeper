@@ -1,18 +1,19 @@
 table td {
-    /* height: 50px;
-    width: 50px; */
+    height: 25px;
+    width: 25px;
     display: inline-block;
     border: 1px solid black;
     /* border: 5px solid white; */
     border-radius: 5px;
     padding: 5px;
-    font-weight:bold;
-    text-align: center    
+    font-weight: bold;
+    text-align: center
 }
 
 table td:hover {
     background-color: #9dfcf9;
 }
+
 .col-centered {
     float: none;
     margin: 0 auto;
