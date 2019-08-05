@@ -3,7 +3,8 @@ field = $('#field')
 // minegield grid
 maxCol = 10
 maxRow = 10
-
+Score = 0
+Flags = maxRow
 function setupMinefield() {
 
 
@@ -14,7 +15,7 @@ function setupMinefield() {
   for (row = 0; row < maxRow; row++) {
     gridHtml += '<tr>'
     for (col = 0; col < maxCol; col++) {
-      gridHtml += "<td id='gn-" + gridNumber + "'onclick='stepOn(this)'>" + gridNumber + "</td>"
+      gridHtml += "<td id='gn-" + gridNumber + "'onclick='stepOn(this)'></td>"
       gridNumber++
     }
     gridHtml += '</tr>'
@@ -37,7 +38,7 @@ function throwMines(maxMines) {
   console.log(mines)
 
   for (m = 0; m < mines.length; m++) {
-    $('#gn-' + mines[m]).html('M')
+    // $('#gn-' + mines[m]).html('M')
   }
   // minesLoc = mines
   return mines
@@ -60,13 +61,15 @@ function stepOn(field) {
     stepR = parseInt(fieldNo / maxRow)
     distances = []
     console.log("Row: " + stepR + " Col: " + stepC)
+    Score++
+    $('#score').html('Score: ' + Score)
     for (m = 0; m < minesLoc.length; m++) {
       // $('#gn-' + minesLoc[m]).css('background-color','#FF0000')
       mineC = parseInt(minesLoc[m] % maxCol)
       mineR = parseInt(minesLoc[m] / maxRow)
-      distance = Math.sqrt(Math.pow(mineC - stepC, 2) + Math.pow(mineR - stepR, 2),2)
+      distance = Math.sqrt(Math.pow(mineC - stepC, 2) + Math.pow(mineR - stepR, 2), 2)
       distances.push(parseInt(distance))
-      console.log(minesLoc[m], (mineC - stepC), (mineR - stepR),parseInt(distance))
+      console.log(minesLoc[m], (mineC - stepC), (mineR - stepR), parseInt(distance))
 
     }
     distances.sort(function (a, b) {
@@ -77,6 +80,23 @@ function stepOn(field) {
 
   }
 
+}
+
+function checkEnclosed() {
+  for(m=0;m<minesLoc;m++){
+
+  }
+  
+}
+
+function putFlag() {
+  $('#app').css('cursor', 'url("https://github.com/encharm/Font-Awesome-SVG-PNG/blob/master/black/svg/flag.svg"),auto;')
+}
+
+function resetGame(params) {
+  Score = 0
+  setupMinefield()
+  minesLoc = throwMines(10)
 }
 
 
