@@ -21,12 +21,36 @@
 <body>
   <div class="container">
     <h1 class="card-header-title">A Simple Minesweeper game</h1>
-    <div class="row">
+
+    <div class="container">
       <div class="row">
-        <div class="col" id="score">Score: 0 </div>
-        <div class="col"><button class="btn btn-primary" onclick="resetGame()">Reset</button> </div>
+        <div class="col">
+          <div id="score">Score: 0</div>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" onclick="resetGame()">Reset</button>
+        </div>
+        <div class="col">
+          <button class="btn btn-primary" onclick="putFlag()">Flag Mine</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div id=app>
+            <table class="table table-md">
+              <tbody id="field">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="row">
+      <div class="row">
+        <!-- <div class="col" id="score">Score: 0 </div> -->
+    <!-- <div class="col"><button class="btn btn-primary" onclick="resetGame()">Reset</button> </div>
         <div class="col"><button class="btn btn-primary" onclick="putFlag()">Flag Mine</button></div>
-        <!-- <div class="col"></div> -->
+        <!-- <div class="col"></div>
 
         <div class="col col-centered">
           <div id=app>
@@ -42,7 +66,7 @@
 
 
 
-    </div>
+    </div> -->
   </div>
   </div>
 
