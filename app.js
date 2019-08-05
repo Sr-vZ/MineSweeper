@@ -1,11 +1,13 @@
 field = $('#field')
 
 // minegield grid
+maxCol = 10
+maxRow = 10
+
 function setupMinefield() {
 
 
-  maxCol = 10
-  maxRow = 10
+
 
   gridHtml = ''
   gridNumber = 1
@@ -42,22 +44,36 @@ function throwMines(maxMines) {
 }
 
 function stepOn(field) {
-  
-  fieldNo = field.id.split('-')[1]
+
+  fieldNo = parseInt(field.id.split('-')[1])
   console.log(fieldNo)
-  if(minesLoc.includes(fieldNo*1)){
+  if (minesLoc.includes(fieldNo)) {
     // boom
-    for(m=0;m<minesLoc.length;m++){
-      $('#gn-' + minesLoc[m]).css('background-color','#FF0000')
+    for (m = 0; m < minesLoc.length; m++) {
+      $('#gn-' + minesLoc[m]).css('background-color', '#FF0000')
+      $('#gn-' + minesLoc[m]).html('&#x1f4a3')
     }
     alert('You stepped on mine! You Lost!')
 
-  }else{
-    for(m=0;m<minesLoc.length;m++){
+  } else {
+    stepC = parseInt(fieldNo % maxCol)
+    stepR = parseInt(fieldNo / maxRow)
+    distances = []
+    console.log("Row: " + stepR + " Col: " + stepC)
+    for (m = 0; m < minesLoc.length; m++) {
       // $('#gn-' + minesLoc[m]).css('background-color','#FF0000')
-      
+      mineC = parseInt(minesLoc[m] % maxCol)
+      mineR = parseInt(minesLoc[m] / maxRow)
+      distance = Math.sqrt(Math.pow(mineC - stepC, 2) + Math.pow(mineR - stepR, 2),2)
+      distances.push(parseInt(distance))
+      console.log(minesLoc[m], (mineC - stepC), (mineR - stepR),parseInt(distance))
+
     }
-    $('#'+field.id).css('background-color','#C0C0C0')
+    distances.sort(function (a, b) {
+      return a - b
+    });
+    $('#' + field.id).html(distances[0])
+    $('#' + field.id).css('background-color', '#C0C0C0')
 
   }
 

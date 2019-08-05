@@ -1,3 +1,11 @@
+table td{
+    /* height: 30px;
+    width: 30px; */
+    border: 2px solid black;
+    
+}
+
 table td:hover {
     background-color: #9dfcf9;
 }
+
